@@ -1,0 +1,23 @@
+{
+  "name": "@lion66/command",
+  "version": "0.0.0",
+  "description": "command class encapsulation",
+  "keywords": [],
+  "author": "梁琰沁 <valaryanqin@gmail.com>",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com/"
+  },
+  "scripts": {
+    "test": "node ./__tests__/command.test.js"
+  },
+  "type": "module"
+}

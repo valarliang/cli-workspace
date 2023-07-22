@@ -1,0 +1,27 @@
+{
+  "name": "@lion66/init",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "梁琰沁 <valaryanqin@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com/"
+  },
+  "scripts": {
+    "test": "node ./__tests__/init.test.js"
+  },
+  "dependencies": {
+    "@lion66/command": "^0.0.0",
+    "@lion66/utils": "^0.0.0"
+  },
+  "type": "module"
+}
