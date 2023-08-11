@@ -8,8 +8,8 @@ import { log } from '@lion66/utils'
 
 const __dirname = dirname(import.meta)
 const pkg = fse.readJsonSync(path.resolve(__dirname, '../package.json'))
-
 const LOWEST_NODE_VERSION = '14.0.0'
+
 function checkNodeVersion() {
   if (semver.lte(process.version, LOWEST_NODE_VERSION)) {
     log.verbose('node version', process.version)

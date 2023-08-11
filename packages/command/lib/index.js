@@ -12,7 +12,7 @@ class Command {
         cmd.option(...opt)
       })
     }
-    cmd.action((...params) => this.action(...params))
+    cmd.action(this.action)
     cmd.hook('preAction', this.preAction)
     cmd.hook('postAction', this.postAction)
   }

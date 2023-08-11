@@ -21,7 +21,10 @@
   },
   "dependencies": {
     "@lion66/command": "^0.0.0",
-    "@lion66/utils": "^0.0.0"
+    "@lion66/utils": "^0.0.0",
+    "execa": "^7.2.0",
+    "fs-extra": "^11.1.1",
+    "ora": "^7.0.1"
   },
   "type": "module"
 }
