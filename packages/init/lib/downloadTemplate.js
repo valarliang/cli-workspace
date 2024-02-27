@@ -21,11 +21,11 @@ async function download(targetPath, template) {
 export default async function downloadTemplate(selectedTemplate) {
   const { targetPath, template } = selectedTemplate
   makeCacheDir(targetPath)
-  const spinner = ora('正在下载模板...').start()
+  const spinner = ora(`正在下载模板...`).start()
   try {
     await download(targetPath, template)
     spinner.stop()
-    log.success('下载成功')
+    log.success(`下载成功（缓存目录：${targetPath}）`)
   } catch (error) {
     spinner.stop()
     printErrLog(error)

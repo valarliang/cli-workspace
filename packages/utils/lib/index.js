@@ -1,4 +1,5 @@
 export { default as log } from './log.js'
+export { default as request } from './request.js'
 export { enquiry } from './inquirer.js'
 export { getLatestVersion } from './npm.js'
 export * from './shared.js'

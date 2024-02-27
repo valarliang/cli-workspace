@@ -1,19 +1,8 @@
 import path from 'node:path';
 import { homedir } from 'node:os'; // 获取当前系统用户的主目录方法
 import ora from 'ora'
-import { log, enquiry, getLatestVersion } from "@lion66/utils";
+import { log, enquiry, getLatestVersion, request } from "@lion66/utils";
 
-export const ADD_TEMPLATE = [{
-  name: 'hello模板',
-  value: 'hello模板',
-  npmName: '@lion66/hello',
-  version: '1.0.2'
-},{
-  name: 'hello-lib模板',
-  value: 'hello-lib模板',
-  npmName: '@lion66/hello-lib',
-  version: '1.0.0'
-}]
 export const ADD_TYPE = [
   {
     name: '项目',
@@ -26,6 +15,19 @@ export const ADD_TYPE = [
 ]
 const TEMP_HOME = '.cli-template'
 
+async function getTemplates() {
+  try {
+    const data = await request({
+      url: '/project',
+      method: 'get',
+    })
+    log.verbose('Templates:', data)
+    return data
+  } catch (error) {
+    log.error(error)
+    return null
+  }
+}
 function getAddType() {
   return enquiry({
     choices: ADD_TYPE,
@@ -43,9 +45,9 @@ function getAddName() {
     }
   })
 }
-function getAddTemplate() {
+function getAddTemplate(choices) {
   return enquiry({
-    choices: ADD_TEMPLATE,
+    choices,
     message: '请选择初始化模版',
   })
 }
@@ -54,6 +56,8 @@ function makeTargetPath() {
 }
 
 export default async function createTemplate(name, opts) {
+  const ADD_TEMPLATE = await getTemplates()
+  if (!ADD_TEMPLATE) throw Error('项目模板不存在！')
   let { type, template } = opts
   if (!type) type = await getAddType() // 创建类型
   if (!ADD_TYPE.some(t => t.value === type)) throw Error(`创建类型 ${type} 不存在！`)
@@ -63,7 +67,7 @@ export default async function createTemplate(name, opts) {
       name = await getAddName() // 命令参数未定义名称则需输入项目名称
       log.verbose('name', name)
     }
-    if (!template) template = await getAddTemplate() // 选择的模板
+    if (!template) template = await getAddTemplate(ADD_TEMPLATE) // 选择的模板
     log.verbose('addTemplate', template)
     const selectedTemplate = ADD_TEMPLATE.find(t => t.value === template)
     if (!selectedTemplate) throw Error(`选择的模板 ${template} 不存在！`)

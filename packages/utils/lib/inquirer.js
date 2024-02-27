@@ -8,7 +8,6 @@ export function enquiry(options) {
     // default, // 默认值
     // choices, // 提供的选项
     require: true,
-    mask: '*',
     // validate, // 校验用户输入的函数
     // ...
   }
